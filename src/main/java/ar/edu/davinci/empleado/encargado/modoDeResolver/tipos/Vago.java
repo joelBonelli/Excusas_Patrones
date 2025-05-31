@@ -1,6 +1,7 @@
 package ar.edu.davinci.empleado.encargado.modoDeResolver.tipos;
 
 import ar.edu.davinci.empleado.encargado.Encargado;
+import ar.edu.davinci.empleado.encargado.Rechazador;
 import ar.edu.davinci.empleado.encargado.modoDeResolver.ModoDeResolver;
 import ar.edu.davinci.excusa.Excusa;
 
@@ -11,6 +12,9 @@ public class Vago extends ModoDeResolver {
 
         if(encargado.getSiguiente() !=null){
             encargado.getSiguiente().manejarExcusa(excusa);
+        } else {
+            Rechazador rechazador = new Rechazador();
+            rechazador.procesarExcusa(excusa);
         }
     }
 }

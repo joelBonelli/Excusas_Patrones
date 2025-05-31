@@ -17,6 +17,6 @@ public class AdministradorDeProntuarios extends AdministradorAbstracto{
 
     public void guardarProntuario(Prontuario prontuario ) {
         prontuarios.add(prontuario);
-        notificarObservador();
+        notificarObservador(prontuario);
     }
 }

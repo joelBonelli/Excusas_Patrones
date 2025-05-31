@@ -1,5 +1,9 @@
 package ar.edu.davinci.empleado;
 
+import ar.edu.davinci.empleado.encargado.LineaDeEncargados;
+import ar.edu.davinci.excusa.Excusa;
+import ar.edu.davinci.excusa.tipoDeExcusa.TipoDeExcusa;
+
 public class Empleado {
     private String nombre;
     private String email;
@@ -22,4 +26,13 @@ public class Empleado {
     public int getLegajo() {
         return legajo;
     }
+
+    public void generarExcusa(TipoDeExcusa tipoDeExcusa) {
+        Excusa excusa = new Excusa(this, tipoDeExcusa);
+        LineaDeEncargados lineaDeEncargados = new LineaDeEncargados();
+        lineaDeEncargados.empezarLinea(excusa);
+        //return excusa;
+    }
+
+
 }

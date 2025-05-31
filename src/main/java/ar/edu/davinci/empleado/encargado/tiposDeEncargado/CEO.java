@@ -2,7 +2,7 @@ package ar.edu.davinci.empleado.encargado.tiposDeEncargado;
 
 import ar.edu.davinci.email.EmailSender;
 import ar.edu.davinci.empleado.encargado.Encargado;
-import ar.edu.davinci.empleado.encargado.modoDeResolver.ModoDeResolver;
+import ar.edu.davinci.empleado.encargado.Rechazador;
 import ar.edu.davinci.empleado.prontuario.AdministradorDeProntuarios;
 import ar.edu.davinci.empleado.prontuario.interfaces.Observador;
 import ar.edu.davinci.empleado.prontuario.Prontuario;
@@ -11,15 +11,16 @@ import ar.edu.davinci.excusa.Excusa;
 public class CEO extends Encargado implements Observador {
     private String asunto = "Aprobado por creatividad";
     private String cuerpo = "Buen descanzo";
+    private Rechazador rechazador;
 
-    public CEO(String nombre, String email, int legajo, ModoDeResolver modoDeResolver) {
-        super(nombre, email, legajo, modoDeResolver);
+    public CEO(String nombre, String email, int legajo, Rechazador rechazador) {
+        super(nombre, email, legajo);
+        this.rechazador = rechazador;
     }
 
 
     @Override
     protected boolean puedeManejar(Excusa excusa) {
-        //return excusa.getTipoDeExcusa() instanceof ExcusaInverosimil;
         return excusa.puedeSerManejaPor(this);
     }
 

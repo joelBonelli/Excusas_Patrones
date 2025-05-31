@@ -14,4 +14,12 @@ public class Prontuario {
         this.legajo = legajo;
         this.excusa = excusa;
     }
+
+    public String  getEmpleado() {
+        return empleado.getNombre() + " - "+ empleado.getEmail();
+    }
+
+    public String getExcusa() {
+        return excusa.getDescripcion();
+    }
 }

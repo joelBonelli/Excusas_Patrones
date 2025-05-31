@@ -1,11 +1,8 @@
 package ar.edu.davinci.empleado.encargado.tiposDeEncargado;
 
 import ar.edu.davinci.email.EmailSender;
-import ar.edu.davinci.empleado.encargado.modoDeResolver.ModoDeResolver;
 import ar.edu.davinci.empleado.encargado.Encargado;
 import ar.edu.davinci.excusa.Excusa;
-import ar.edu.davinci.excusa.tipoDeExcusa.ExcusaModerada;
-import ar.edu.davinci.excusa.tipoDeExcusa.moderada.SeCortoLaLuz;
 
 public class SupervisorDeArea extends Encargado {
     private String asunto = "Supervisor de area";
@@ -14,8 +11,8 @@ public class SupervisorDeArea extends Encargado {
     private String cuerpoEdesur = "¿Es verdad que el barrio está sin luz?";
     private String emailEdesur = "EDESUR@mailfake.com.ar";
 
-    public SupervisorDeArea(String nombre, String email, int legajo, ModoDeResolver modoDeResolver) {
-        super(nombre, email, legajo, modoDeResolver);
+    public SupervisorDeArea(String nombre, String email, int legajo, Encargado encargado) {
+        super(nombre, email, legajo, encargado);
     }
 
     @Override

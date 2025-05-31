@@ -23,7 +23,7 @@ public abstract class AdministradorAbstracto implements AdministradorObservable 
     }
 
     @Override
-    public void notificarObservador() {
+    public void notificarObservador(Prontuario prontuario) {
         EmailSender email = new EmailSender();
 
         for (CEO ceo : ceos) {
@@ -32,6 +32,9 @@ public abstract class AdministradorAbstracto implements AdministradorObservable 
             email.enviarEmail(ceo.getEmail(), emailOrigen, asunto, cuerpo );
         }
         System.out.println("Email enviado a todos los CEOs"+
+                "\nNuevo Prontuario Ingresado: "+
+                "\nEmpleado: " + prontuario.getEmpleado() +
+                "\nExcusa: " + prontuario.getExcusa() +
                 "\n--------------------------");
     }
 

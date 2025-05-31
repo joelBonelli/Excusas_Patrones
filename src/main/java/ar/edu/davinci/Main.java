@@ -15,40 +15,11 @@ import ar.edu.davinci.excusa.tipoDeExcusa.TipoDeExcusa;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        // Instanciar la cadena de responsabilidades
-        Encargado cadena = Encargado.crearCadenaEncargados();
-
-        // Instaciar un empleado que tiene una excusa
-        Empleado empleado = new Empleado("Pepe", "pepe@mail.com", 146);
-
-        // Excusa Trivial
-        TipoDeExcusa noCargueLaSube = new ExcusaTrivial();
-
-        // Excusas Moderadas
-        TipoDeExcusa seCortoLaLuz = new SeCortoLaLuz();
-        TipoDeExcusa tuveQueCuidarUnFamiliar = new CuideAUnFamiliar();
-
-        // Excusa Compleja
-        TipoDeExcusa palomaLadrona = new ExcusaCompleja();
-
-        // Excusa Inverosimil
-        TipoDeExcusa inverosimil = new ExcusaInverosimil("Tuve un asado en Jupiter");
-
-        // Crear la excusa completa
-        Excusa excusa1 = new Excusa(empleado, noCargueLaSube);
-        Excusa excusa2 = new Excusa(empleado, seCortoLaLuz);
-        Excusa excusa3 = new Excusa(empleado, tuveQueCuidarUnFamiliar);
-        Excusa excusa4 = new Excusa(empleado, palomaLadrona);
-        Excusa excusa5 = new Excusa(empleado, inverosimil);
 
 
+    Empleado pepe = new Empleado("Pepe", "pepe@mail.com", 1500);
+    pepe.generarExcusa(new ExcusaInverosimil("blabla"));
 
-        // ejecutar la cadena, con la excusa
-        try {
-            cadena.manejarExcusa(excusa4);
-        } catch (RechazarExcusaException e) {
-            System.out.println(e.getMessage());
-        }
 
     }
 }

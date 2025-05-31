@@ -1,14 +1,12 @@
 package ar.edu.davinci.empleado.encargado.tiposDeEncargado;
 
-import ar.edu.davinci.empleado.encargado.modoDeResolver.ModoDeResolver;
 import ar.edu.davinci.empleado.encargado.Encargado;
 import ar.edu.davinci.excusa.Excusa;
-import ar.edu.davinci.excusa.tipoDeExcusa.ExcusaCompleja;
 
 public class GerenteRRHH extends Encargado {
 
-    public GerenteRRHH(String nombre, String email, int legajo, ModoDeResolver modoDeResolver ) {
-        super(nombre, email, legajo, modoDeResolver);
+    public GerenteRRHH(String nombre, String email, int legajo, Encargado encargado ) {
+        super(nombre, email, legajo, encargado);
     }
 
     @Override
