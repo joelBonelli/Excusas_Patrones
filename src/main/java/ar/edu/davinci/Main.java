@@ -17,11 +17,6 @@ public class Main {
     public static void main(String[] args) {
 
 
-    Empleado pepe = new Empleado("Pepe", "pepe@mail.com", 1500);
-    Excusa excusa = pepe.generarExcusa(new ExcusaInverosimil());
-    System.out.println(excusa);
-//
-//        Excusa excusa = pepe.generarExcusa(new SeCortoLaLuz());
-//        System.out.println(excusa.getTipoDeExcusa());
+
     }
 }
