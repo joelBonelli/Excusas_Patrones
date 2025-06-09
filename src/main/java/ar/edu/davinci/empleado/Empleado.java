@@ -27,11 +27,11 @@ public class Empleado {
         return legajo;
     }
 
-    public void generarExcusa(TipoDeExcusa tipoDeExcusa) {
+    public Excusa generarExcusa(TipoDeExcusa tipoDeExcusa) {
         Excusa excusa = new Excusa(this, tipoDeExcusa);
         LineaDeEncargados lineaDeEncargados = new LineaDeEncargados();
         lineaDeEncargados.empezarLinea(excusa);
-        //return excusa;
+        return excusa;
     }
 
 

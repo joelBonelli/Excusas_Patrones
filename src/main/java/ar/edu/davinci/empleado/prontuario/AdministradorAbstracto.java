@@ -31,11 +31,11 @@ public abstract class AdministradorAbstracto implements AdministradorObservable 
             String cuerpo = ceo.toString();
             email.enviarEmail(ceo.getEmail(), emailOrigen, asunto, cuerpo );
         }
-        System.out.println("Email enviado a todos los CEOs"+
-                "\nNuevo Prontuario Ingresado: "+
-                "\nEmpleado: " + prontuario.getEmpleado() +
-                "\nExcusa: " + prontuario.getExcusa() +
-                "\n--------------------------");
+//        System.out.println("Email enviado a todos los CEOs"+
+//                "\nNuevo Prontuario Ingresado: "+
+//                "\nEmpleado: " + prontuario.getEmpleado() +
+//                "\nExcusa: " + prontuario.getExcusa() +
+//                "\n--------------------------");
     }
 
 

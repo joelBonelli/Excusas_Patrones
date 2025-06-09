@@ -5,9 +5,11 @@ import ar.edu.davinci.empleado.encargado.Encargado;
 import ar.edu.davinci.excusa.tipoDeExcusa.TipoDeExcusa;
 
 public interface  IExcusa {
-    Empleado getEmpleado();
-    TipoDeExcusa getTipoDeExcusa();
+
+    String obtenerNombreEmpleado();
+    String obtenerEmailEmpleado();
+    int obtenerLagajoEmpleado();
+    String getTipoDeExcusa();
     String toString();
-    String getDescripcion();
     boolean puedeSerManejaPor(Encargado encargado);
 }

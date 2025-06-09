@@ -3,8 +3,18 @@ package ar.edu.davinci.empleado.encargado;
 import ar.edu.davinci.excepcion.RechazarExcusaException;
 import ar.edu.davinci.excusa.Excusa;
 
-public  class  Rechazador implements ManejadorExcusas {
+public class Rechazador implements ManejadorExcusas {
     public Rechazador() {}
+
+    @Override
+    public ManejadorExcusas getSiguiente() {
+        return null;
+    }
+
+    @Override
+    public boolean puedeManejar(Excusa excusa) {
+        return true;
+    }
 
     @Override
     public void manejarExcusa(Excusa excusa) {
@@ -12,16 +22,9 @@ public  class  Rechazador implements ManejadorExcusas {
     }
 
     @Override
-    public Encargado getSiguiente() {
-        return null;
-    }
-
-    @Override
     public void procesarExcusa(Excusa excusa) {
-        throw new RechazarExcusaException("Excusa Recibida: " + excusa.getDescripcion() +
-                "\nExcusa Rechazada: necesitamos pruebas contundentes");
+        throw new RechazarExcusaException("Excusa rechazada");
     }
-
 
     @Override
     public boolean sosRecepcionista() {

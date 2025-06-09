@@ -15,11 +15,11 @@ public class Prontuario {
         this.excusa = excusa;
     }
 
-    public String  getEmpleado() {
-        return empleado.getNombre() + " - "+ empleado.getEmail();
+    public String getNombreEmpleado() {
+        return empleado.getNombre();
     }
 
     public String getExcusa() {
-        return excusa.getDescripcion();
+        return excusa.toString();
     }
 }

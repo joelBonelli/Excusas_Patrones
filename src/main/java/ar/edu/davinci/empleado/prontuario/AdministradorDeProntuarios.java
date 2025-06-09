@@ -8,6 +8,8 @@ public class AdministradorDeProntuarios extends AdministradorAbstracto{
     private static AdministradorDeProntuarios administrador;
     private List<Prontuario> prontuarios = new ArrayList<>();
 
+    private AdministradorDeProntuarios() {}
+
     public static AdministradorDeProntuarios getInstance() {
         if (administrador == null) {
             administrador = new AdministradorDeProntuarios();

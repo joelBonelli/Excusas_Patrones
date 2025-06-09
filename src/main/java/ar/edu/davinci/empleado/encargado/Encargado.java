@@ -1,29 +1,25 @@
 package ar.edu.davinci.empleado.encargado;
 
 import ar.edu.davinci.empleado.Empleado;
-import ar.edu.davinci.empleado.encargado.modoDeResolver.ModoDeResolver;
+import ar.edu.davinci.empleado.encargado.modoDeResolver.IModoDeResolver;
 import ar.edu.davinci.empleado.encargado.modoDeResolver.tipos.Normal;
-import ar.edu.davinci.empleado.encargado.modoDeResolver.tipos.Productivo;
 import ar.edu.davinci.empleado.encargado.modoDeResolver.tipos.Vago;
 import ar.edu.davinci.excusa.Excusa;
 
 
 public abstract class Encargado extends Empleado implements ManejadorExcusas {
+    private IModoDeResolver modoDeResolver;
+    private ManejadorExcusas siguiente;
 
-    private ModoDeResolver modoDeResolver;
-    private Encargado siguiente;
-
-    // Primer constructor para los encargados que tiene un tipo ENCARGADO como siguiente
-    public Encargado(String nombre, String email, int legajo, Encargado siguiente) {
+    public Encargado(String nombre, String email, int legajo, ManejadorExcusas siguiente) {
         super(nombre, email, legajo);
         this.siguiente = siguiente;
-        this.modoDeResolver = new Normal();
+        this.modoDeResolver = new Vago();
     }
 
-    // Constructor para los encargados que NO TIENE siguiente, como CEO, que tiene un RECHAZADOR
-    public Encargado(String nombre, String email, int legajo) {
-        super(nombre, email, legajo);
-        this.modoDeResolver = new Normal();
+    @Override
+    public ManejadorExcusas getSiguiente(){
+        return siguiente;
     }
 
     @Override
@@ -31,22 +27,20 @@ public abstract class Encargado extends Empleado implements ManejadorExcusas {
         modoDeResolver.resolver(this, excusa);
     }
 
-
-    @Override
-    public Encargado getSiguiente(){
-        return siguiente;
-    }
-
     @Override
     public void procesarExcusa(Excusa excusa){
         if (this.puedeManejar(excusa)) {
             this.ejecutarAccion(excusa);
-        } else if (siguiente != null){
-            siguiente.manejarExcusa(excusa);
+        } else if (this.siguiente != null){
+            this.siguiente.manejarExcusa(excusa);
         }
     }
 
-    protected abstract boolean puedeManejar(Excusa excusa);
+    @Override
+    public boolean puedeManejar(Excusa excusa) {
+        return excusa.puedeSerManejaPor(this);
+    }
+
     protected abstract void ejecutarAccion(Excusa excusa);
 
     @Override
@@ -69,43 +63,6 @@ public abstract class Encargado extends Empleado implements ManejadorExcusas {
         return false;
     }
 
-
-
-
-
-
- //   public static Encargado crearCadenaEncargados() {
-//        Encargado recepcionista = new Recepcionista("Ana", "ana@mail.com", 1);
-//        Encargado supervisor = new SupervisorDeArea("Luis", "luis@mail.com", 2);
-//        Encargado gerente = new GerenteRRHH("Carlos", "carlos@mail.com", 3);
-//        Encargado ceo = new CEO("Laura", "laura@mail.com", 4);
-//        Encargado rechazador = new Rechazador("Hugo", "hugo@mail.com", 5);
-
-//        Encargado recepcionista = new Recepcionista("Ana", "ana@mail.com", 1, new Normal());
-//        Encargado supervisor = new SupervisorDeArea("Luis", "luis@mail.com", 2, new Normal());
-//        Encargado gerente = new GerenteRRHH("Carlos", "carlos@mail.com", 3, new Normal());
-//        Encargado ceo = new CEO("Laura", "laura@mail.com", 4, new Productivo());
-//        Encargado rechazador = new Rechazador("Hugo", "hugo@mail.com", 5, new Normal());
-
-//        recepcionista.setSiguiente(supervisor);
-//        supervisor.setSiguiente(gerente);
-//        gerente.setSiguiente(ceo);
-//        ceo.setSiguiente(rechazador);
-//
-//        return recepcionista;
-//    }
-
-
-//    private static ModoDeResolver modoRandom(){
-//        Random random = new Random();
-//        int opcion = random.nextInt(3);
-//
-//        return switch (opcion){
-//            case 0 -> new Normal();
-//            case 1 -> new Vago();
-//            case 2 -> new Productivo();
-//            default -> new Normal();
-//        };
 
 
 }

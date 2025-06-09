@@ -2,10 +2,7 @@ package ar.edu.davinci.excusa;
 
 import ar.edu.davinci.empleado.Empleado;
 import ar.edu.davinci.empleado.encargado.Encargado;
-import ar.edu.davinci.empleado.encargado.tiposDeEncargado.Recepcionista;
-import ar.edu.davinci.excusa.tipoDeExcusa.ExcusaModerada;
 import ar.edu.davinci.excusa.tipoDeExcusa.TipoDeExcusa;
-import ar.edu.davinci.excusa.tipoDeExcusa.moderada.SeCortoLaLuz;
 
 public class Excusa implements IExcusa {
 
@@ -18,31 +15,36 @@ public class Excusa implements IExcusa {
     }
 
     @Override
-    public Empleado getEmpleado() {
-        return this.empleado;
+    public String obtenerNombreEmpleado() {
+        return this.empleado.getNombre();
     }
 
     @Override
-    public TipoDeExcusa getTipoDeExcusa() {
-        return this.tipoDeExcusa;
+    public String obtenerEmailEmpleado() {
+        return this.empleado.getEmail();
     }
 
     @Override
-    public String toString() {
-        return "Empleado: "+ this.getEmpleado().getNombre() +"\nTipo De Excusa: " + tipoDeExcusa.toString();
+    public int obtenerLagajoEmpleado() {
+        return this.empleado.getLegajo();
     }
 
     @Override
-    public String getDescripcion(){
+    public String getTipoDeExcusa() {
         return this.tipoDeExcusa.toString();
     }
 
     @Override
-    public boolean puedeSerManejaPor(Encargado encargado) {
-        return tipoDeExcusa.ManejadaPor(encargado);
+    public String toString() {
+        return this.getTipoDeExcusa();
     }
 
-    public boolean sosSeCortoLaLuz() {
-        return tipoDeExcusa.sosSeCortoLaLuz();
+    @Override
+    public boolean puedeSerManejaPor(Encargado encargado) {
+        return this.tipoDeExcusa.ManejadaPor(encargado);
+    }
+
+    public void excusaModeradaConcreta(Encargado encargado) {
+        this.tipoDeExcusa.resolverModeradaConcreta(encargado, this.obtenerEmailEmpleado());
     }
 }

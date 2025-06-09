@@ -18,8 +18,10 @@ public class Main {
 
 
     Empleado pepe = new Empleado("Pepe", "pepe@mail.com", 1500);
-    pepe.generarExcusa(new ExcusaInverosimil("blabla"));
-
-
+    Excusa excusa = pepe.generarExcusa(new ExcusaInverosimil());
+    System.out.println(excusa);
+//
+//        Excusa excusa = pepe.generarExcusa(new SeCortoLaLuz());
+//        System.out.println(excusa.getTipoDeExcusa());
     }
 }

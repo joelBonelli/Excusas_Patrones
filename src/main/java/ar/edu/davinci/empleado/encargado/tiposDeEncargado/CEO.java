@@ -1,8 +1,9 @@
 package ar.edu.davinci.empleado.encargado.tiposDeEncargado;
 
 import ar.edu.davinci.email.EmailSender;
+import ar.edu.davinci.empleado.Empleado;
 import ar.edu.davinci.empleado.encargado.Encargado;
-import ar.edu.davinci.empleado.encargado.Rechazador;
+import ar.edu.davinci.empleado.encargado.ManejadorExcusas;
 import ar.edu.davinci.empleado.prontuario.AdministradorDeProntuarios;
 import ar.edu.davinci.empleado.prontuario.interfaces.Observador;
 import ar.edu.davinci.empleado.prontuario.Prontuario;
@@ -11,17 +12,10 @@ import ar.edu.davinci.excusa.Excusa;
 public class CEO extends Encargado implements Observador {
     private String asunto = "Aprobado por creatividad";
     private String cuerpo = "Buen descanzo";
-    private Rechazador rechazador;
 
-    public CEO(String nombre, String email, int legajo, Rechazador rechazador) {
-        super(nombre, email, legajo);
-        this.rechazador = rechazador;
-    }
+    public CEO(String nombre, String email, int legajo, ManejadorExcusas siguiente) {
+        super(nombre, email, legajo, siguiente);
 
-
-    @Override
-    protected boolean puedeManejar(Excusa excusa) {
-        return excusa.puedeSerManejaPor(this);
     }
 
     @Override
@@ -31,18 +25,21 @@ public class CEO extends Encargado implements Observador {
 
     @Override
     protected void ejecutarAccion(Excusa excusa) {
-        System.out.println("Excusa Recibida: " + excusa.getDescripcion() +"\n" + excusa.toString());
-        System.out.println("Excusa gestionada por: " + this.getNombre());
+        //System.out.println("Excusa Recibida \n" + excusa);
+        //System.out.println("Excusa gestionada por: " + this.getNombre());
+
         EmailSender emailSender = new EmailSender();
-        emailSender.enviarEmail(excusa.getEmpleado().getEmail(), this.getEmail(), asunto, cuerpo);
-        Prontuario prontuario = new Prontuario(excusa.getEmpleado(), this.getLegajo(), excusa);
+        emailSender.enviarEmail(excusa.obtenerEmailEmpleado(), this.getEmail(), asunto, cuerpo);
+
+        Empleado empleado = new Empleado(excusa.obtenerNombreEmpleado(), excusa.obtenerEmailEmpleado(), excusa.obtenerLagajoEmpleado());
+
+        Prontuario prontuario = new Prontuario(empleado, this.getLegajo(), excusa);
         notificar(prontuario);
     }
 
-
     @Override
     public void notificar(Prontuario prontuario) {
-        AdministradorDeProntuarios administradorDeProntuarios = new AdministradorDeProntuarios();
+        AdministradorDeProntuarios administradorDeProntuarios = AdministradorDeProntuarios.getInstance();
         administradorDeProntuarios.guardarProntuario(prontuario);
     }
 }
